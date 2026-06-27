@@ -215,7 +215,8 @@
       position: relative;
     }
     .gallery-item img,
-    .gallery-item video {
+    .gallery-item video,
+    .gallery-item iframe {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -226,7 +227,8 @@
     .gallery-item.portrait img,
     .gallery-item.portrait video { min-height: 360px; }
     .gallery-item:hover img,
-    .gallery-item:hover video { transform: scale(1.04); }
+    .gallery-item:hover video,
+    .gallery-item:hover iframe { transform: scale(1.04); }
 
     /* ── PHOTO BREAK ──────────────────────────── */
     .photo-break {
@@ -624,7 +626,7 @@
         gap: 6px;
       }
       .gallery-item { overflow: hidden; }
-      .gallery-item img, .gallery-item video { min-height: unset; width: 100%; height: 340px; object-fit: cover; display: block; }
+      .gallery-item img, .gallery-item video, .gallery-item iframe { min-height: unset; width: 100%; height: 340px; object-fit: cover; display: block; }
       .outcomes-heading br { display: none; }
       .gallery-grid .g1,
       .gallery-grid .g2,
@@ -807,9 +809,8 @@
           <img src="Pics/IMG_8324.JPG" alt="La Gaviota - Mediterranean exterior">
         </div>
         <div class="gallery-item g2">
-          <video autoplay muted loop playsinline controls>
-            <source src="Pics/22DB8445-3CC7-4AEC-A1B7-E675F7575E00.mov" type="video/mp4">
-            <source src="Pics/22DB8445-3CC7-4AEC-A1B7-E675F7575E00.mov" type="video/quicktime">
+          <video autoplay muted loop playsinline>
+            <source src="Pics/22DB8445.mp4" type="video/mp4">
           </video>
         </div>
         <div class="gallery-item g3 portrait">
@@ -825,9 +826,8 @@
           <img src="Pics/IMG_8322.JPG" alt="La Gaviota - coastal bar">
         </div>
         <div class="gallery-item g7">
-          <video autoplay muted loop playsinline controls>
-            <source src="Pics/A981726D-DBE9-4A49-B234-298AB4219B62.mov" type="video/mp4">
-            <source src="Pics/A981726D-DBE9-4A49-B234-298AB4219B62.mov" type="video/quicktime">
+          <video autoplay muted loop playsinline>
+            <source src="Pics/A981726D.mp4" type="video/mp4">
           </video>
         </div>
         <div class="gallery-item g8">
