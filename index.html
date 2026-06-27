@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rose — Commercial Content Creator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:      #FAFAF8;
+      --ink:     #1A1916;
+      --muted:   #4A4540;
+      --soft:    #EDEBE5;
+      --gold:    #B8956A;
+      --gold-lt: #CFA882;
+      --rule:    #D8D2CA;
+      --dark:    #1A1916;
+      --white:   #FFFFFF;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    .label {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── NAV ──────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(250,250,248,0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 48px;
+      height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 21px;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-cta {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      padding: 10px 24px;
+      border: 1px solid var(--ink);
+      transition: all 0.22s ease;
+    }
+    .nav-cta:hover { background: var(--ink); color: var(--white); }
+
+    /* ── HERO ─────────────────────────────────── */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 100px 48px 16px;
+    }
+    .hero-eyebrow {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 44px;
+    }
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(80px, 14vw, 168px);
+      font-weight: 300;
+      line-height: 0.9;
+      letter-spacing: 0.06em;
+      color: var(--gold);
+      margin-bottom: 44px;
+    }
+    .hero-sub {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--muted);
+      max-width: 460px;
+      line-height: 1.85;
+      margin-bottom: 40px;
+    }
+    .hero-scroll {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .hero-scroll span {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .scroll-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: pulse 2.2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    /* ── ABOUT ────────────────────────────────── */
+    .about {
+      padding: 48px 0 100px;
+      border-top: 1px solid var(--rule);
+    }
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 80px;
+      align-items: center;
+    }
+    .about .label {
+      display: block;
+      margin-bottom: 16px;
+    }
+    .about-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(30px, 3.6vw, 46px);
+      font-weight: 300;
+      line-height: 1.2;
+      letter-spacing: 0.01em;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+    .about-heading em { font-style: italic; color: var(--gold); }
+    .about-body {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.9;
+      margin-bottom: 0;
+    }
+    .about-body strong {
+      font-weight: 400;
+      color: var(--ink);
+    }
+    .about-photo {
+      position: relative;
+    }
+    .about-photo img {
+      width: 100%;
+      height: 560px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ── GALLERY ──────────────────────────────── */
+    .gallery-section { padding: 0 0 100px; }
+    .gallery-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: auto;
+      gap: 12px;
+    }
+    .gallery-grid .g1 { grid-column: 1 / 6;  grid-row: 1; }
+    .gallery-grid .g2 { grid-column: 6 / 10; grid-row: 1; }
+    .gallery-grid .g3 { grid-column: 10 / 13; grid-row: 1; }
+    .gallery-grid .g4 { grid-column: 1 / 5;  grid-row: 2; }
+    .gallery-grid .g5 { grid-column: 5 / 9;  grid-row: 2; }
+    .gallery-grid .g6 { grid-column: 9 / 13; grid-row: 2; }
+    .gallery-grid .g7 { grid-column: 1 / 7;  grid-row: 3; }
+    .gallery-grid .g8 { grid-column: 7 / 13; grid-row: 3; }
+    .gallery-item {
+      overflow: hidden;
+      position: relative;
+    }
+    .gallery-item img,
+    .gallery-item video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      min-height: 260px;
+      transition: transform 0.65s ease;
+    }
+    .gallery-item.portrait img,
+    .gallery-item.portrait video { min-height: 360px; }
+    .gallery-item:hover img,
+    .gallery-item:hover video { transform: scale(1.04); }
+
+    /* ── PHOTO BREAK ──────────────────────────── */
+    .photo-break {
+      width: 100vw;
+      margin-left: 50%;
+      transform: translateX(-50%);
+    }
+    .photo-break img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ── OUTCOMES ─────────────────────────────── */
+    .outcomes {
+      padding: 40px 0 24px;
+      background: var(--bg);
+      border-top: 1px solid var(--rule);
+    }
+    .outcomes-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 72px;
+    }
+    .outcomes-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 5vw, 62px);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: 0.01em;
+      color: var(--ink);
+    }
+    .outcomes-heading em { font-style: italic; color: var(--gold); }
+    .outcomes-sub {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--muted);
+      max-width: 320px;
+      line-height: 1.85;
+      text-align: right;
+    }
+    .outcomes-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+    }
+    .outcome-card {
+      background: var(--white);
+      padding: 16px 28px 20px;
+      border-top: 3px solid var(--gold);
+    }
+    .outcome-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      font-weight: 300;
+      color: rgba(26,25,22,0.1);
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+    .outcome-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+    .outcome-desc {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 18px;
+    }
+    .outcome-list {
+      list-style: none;
+      padding: 0;
+      border-top: 1px solid var(--rule);
+      padding-top: 16px;
+    }
+    .outcome-list li {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--muted);
+      padding: 5px 0 5px 18px;
+      position: relative;
+    }
+    .outcome-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 7px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    /* ── PACKAGES ─────────────────────────────── */
+    .packages {
+      padding: 120px 0;
+    }
+    .packages-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: end;
+      margin-bottom: 72px;
+    }
+    .packages-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(34px, 4vw, 50px);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--ink);
+    }
+    .packages-heading em { font-style: italic; color: var(--gold); }
+    .packages-note {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.85;
+    }
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--rule);
+    }
+    .package-card {
+      padding: 44px 36px;
+      border-right: 1px solid var(--rule);
+    }
+    .package-card:last-child { border-right: none; }
+    .package-card.featured {
+      background: var(--ink);
+      color: var(--white);
+    }
+    .package-name {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+    .package-card.featured .package-name { color: var(--gold-lt); }
+    .package-deliverables {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 24px;
+    }
+    .package-card.featured .package-deliverables { color: var(--white); }
+    .package-details {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 32px;
+    }
+    .package-details li {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--muted);
+      padding: 5px 0 5px 16px;
+      position: relative;
+    }
+    .package-card.featured .package-details li { color: rgba(255,255,255,0.7); }
+    .package-details li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 6px;
+      height: 1px;
+      background: var(--gold);
+    }
+    .package-investment {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-top: 1px solid var(--rule);
+      padding-top: 20px;
+    }
+    .package-card.featured .package-investment {
+      color: rgba(255,255,255,0.5);
+      border-top-color: rgba(255,255,255,0.12);
+    }
+
+    /* ── CONTACT ──────────────────────────────── */
+    .contact {
+      padding: 20px 0 100px;
+      text-align: center;
+    }
+    .contact .label {
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      margin-bottom: 40px;
+    }
+    .contact .label::before,
+    .contact .label::after {
+      content: '';
+      display: block;
+      width: 56px;
+      height: 1px;
+      background: var(--gold);
+    }
+    .contact-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(52px, 9vw, 108px);
+      font-weight: 300;
+      line-height: 0.95;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      margin-bottom: 44px;
+    }
+    .contact-heading em { font-style: italic; color: var(--gold); }
+    .contact-sub {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--muted);
+      max-width: 440px;
+      margin: 0 auto 56px;
+      line-height: 1.9;
+    }
+    .contact-email {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(20px, 2.8vw, 32px);
+      font-weight: 300;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      background: #F5EDE0;
+      border: 1.5px solid var(--gold);
+      padding: 20px 56px;
+      display: inline-block;
+      transition: background 0.2s ease;
+    }
+    .contact-email:hover { background: #EDE0CC; }
+    .contact-note {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--muted);
+      margin-top: 28px;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── FOOTER ───────────────────────────────── */
+    footer {
+      padding: 36px 0;
+      border-top: 1px solid var(--rule);
+    }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      color: var(--ink);
+    }
+    .footer-copy {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── MOCKUPS SECTION ─────────────────────── */
+    .mockups-section {
+      padding: 48px 0 32px;
+      border-top: 1px solid var(--rule);
+    }
+    .mockups-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .mockups-header .label {
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .mockups-header h2 {
+      font-family: var(--display);
+      font-size: 40px;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.2;
+      margin: 0;
+    }
+    .mockups-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+      margin-bottom: 24px;
+    }
+    .mockup-item {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .mockup-item img {
+      width: 100%;
+      display: block;
+      border: 1px solid var(--rule);
+    }
+    .mockup-item-label {
+      font-family: var(--sans);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .mockup-item-desc {
+      font-family: var(--sans);
+      font-size: 16px;
+      color: var(--ink);
+      line-height: 1.6;
+    }
+    .mockup-full {
+      margin-top: 0;
+    }
+    .mockup-full img {
+      width: 100%;
+      display: block;
+      border: 1px solid var(--rule);
+    }
+    .mockup-full-label {
+      margin-top: 16px;
+      font-family: var(--sans);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .mockup-full-desc {
+      margin-top: 6px;
+      font-family: var(--sans);
+      font-size: 16px;
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    /* ── PRINT / PDF ─────────────────────────── */
+    @media print {
+      @page { size: A4; margin: 10mm 18mm; }
+      body { margin-top: 0 !important; padding-top: 0 !important; }
+
+      nav, .hero-scroll, .scroll-line { display: none !important; }
+      body { background: #fff; }
+
+      nav { display: none !important; }
+
+      .hero {
+        display: block;
+        text-align: center;
+        padding: 0 0 8px;
+        margin-top: 0;
+        page-break-inside: avoid;
+      }
+      .hero-eyebrow { margin-bottom: 8px; }
+      .hero-name { font-size: 81px; margin-bottom: 8px; }
+      .hero-sub { font-size: 12px; margin-bottom: 0; margin-left: auto; margin-right: auto; }
+
+      .about {
+        padding: 14px 0 14px;
+        page-break-inside: avoid;
+      }
+      .about .label { margin-bottom: 12px; }
+      .about-inner { gap: 24px; }
+      .about-photo img { height: 230px; }
+      .about-heading { font-size: 23px; margin-bottom: 12px; }
+      .about-body { font-size: 13px; }
+
+      .gallery-section {
+        padding: 20px 0 56px;
+        page-break-before: always;
+        page-break-inside: avoid;
+      }
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        grid-template-rows: repeat(1, 340px) !important;
+        gap: 6px;
+      }
+      .gallery-item { overflow: hidden; }
+      .gallery-item img, .gallery-item video { min-height: unset; width: 100%; height: 340px; object-fit: cover; display: block; }
+      .outcomes-heading br { display: none; }
+      .gallery-grid .g1,
+      .gallery-grid .g2,
+      .gallery-grid .g3,
+      .gallery-grid .g4,
+      .gallery-grid .g5,
+      .gallery-grid .g6,
+      .gallery-grid .g7,
+      .gallery-grid .g8 { grid-column: auto; grid-row: auto; }
+      .gallery-item.g2,
+      .gallery-item.g3,
+      .gallery-item.g4,
+      .gallery-item.g5,
+      .gallery-item.g6,
+      .gallery-item.g7 { display: none; }
+      .gallery-item img { min-height: unset; }
+
+      .outcomes {
+        padding: 14px 0 14px;
+        page-break-inside: avoid;
+        border-top: 1px solid #D8D2CA;
+        background: none !important;
+      }
+      .outcomes-header { margin-bottom: 20px; }
+      .outcomes-heading { font-size: 29px; }
+      .outcomes-sub { font-size: 12px; }
+      .outcomes-grid { gap: 6px; grid-template-columns: repeat(2, 1fr) !important; }
+      .outcome-card { padding: 14px 18px; background: none !important; border-top: 2px solid #B8956A; }
+      .outcome-title { font-size: 19px; }
+      .outcome-desc { font-size: 12px; margin-bottom: 12px; }
+      .outcome-list { padding-top: 10px; }
+      .outcome-list li { font-size: 12px; padding: 3px 0 3px 14px; }
+
+      .mockups-section {
+        page-break-before: always;
+        padding: 20px 0 20px;
+        border-top: 1px solid #D8D2CA;
+      }
+      .mockups-header { margin-bottom: 24px; }
+      .mockups-header h2 { font-size: 26px; }
+      .mockups-row {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+      .mockup-item img { border: 1px solid #D8D2CA; }
+      .mockup-item-label { font-size: 10px; margin-top: 6px; }
+      .mockup-item-desc { font-size: 11px; }
+      .mockup-full img {
+        width: 100%;
+        height: auto;
+        border: 1px solid #D8D2CA;
+      }
+      .mockup-full-label { font-size: 10px; margin-top: 6px; }
+      .mockup-full-desc { font-size: 11px; }
+
+      .contact { padding: 24px 0 20px; page-break-inside: avoid; }
+      .contact .label {
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+      }
+      .contact .label::before,
+      .contact .label::after {
+        content: '';
+        display: block;
+        width: 56px;
+        height: 1px;
+        background: #B8956A;
+      }
+      .contact-heading { font-size: 42px; margin-bottom: 36px; line-height: 1.1; color: #1A1916; }
+      .contact-email {
+        font-size: 26px;
+        letter-spacing: 0.12em;
+        color: #1A1916;
+        background: #F5EDE0;
+        border: 1.5px solid #B8956A;
+        padding: 20px 56px;
+        display: inline-block;
+        text-decoration: none;
+      }
+      footer, footer + hr { display: none !important; }
+
+      .container { max-width: 100%; padding: 0; }
+    }
+
+    /* ── RESPONSIVE ───────────────────────────── */
+    @media (max-width: 960px) {
+      .container, .nav-inner { padding-left: 24px; padding-right: 24px; }
+      .hero { padding: 120px 24px 16px; }
+      .about-inner { grid-template-columns: 1fr; gap: 48px; }
+      .about-photo img { height: 380px; }
+      .outcomes-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .outcomes-sub { text-align: left; max-width: 100%; }
+      .outcomes-grid { grid-template-columns: 1fr; }
+      .packages-header { grid-template-columns: 1fr; gap: 24px; }
+      .packages-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+      }
+      .gallery-grid .g1,
+      .gallery-grid .g2,
+      .gallery-grid .g3,
+      .gallery-grid .g4,
+      .gallery-grid .g5,
+      .gallery-grid .g6 { grid-column: auto; grid-row: auto; }
+      .gallery-grid .g7 { grid-column: 1 / -1; grid-row: auto; max-height: 300px; }
+    }
+
+    @media (max-width: 600px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-grid .g7 { grid-column: 1; }
+      .packages-grid { grid-template-columns: 1fr; }
+      .package-card { border-right: none; border-bottom: 1px solid var(--rule); }
+      .package-card.featured { border-bottom: 1px solid rgba(255,255,255,0.1); }
+      .footer-inner { flex-direction: column; gap: 10px; text-align: center; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">ROSE</a>
+      <a href="#contact" class="nav-cta">Enquire</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-eyebrow">Commercial Content Creator</p>
+    <h1 class="hero-name">ROSE</h1>
+    <p class="hero-sub">
+      For content that earns and draws in customers.
+    </p>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about">
+    <div class="container">
+      <div class="about-inner">
+        <div class="about-text">
+          <span class="label">About</span>
+          <h2 class="about-heading">
+            The right image doesn't just show what you offer.<br>
+            <em>It makes people want to be there.</em>
+          </h2>
+          <p class="about-body">
+            A room <em>photographed well</em> fills itself. A restaurant <em>shot correctly</em> fills tables.
+            A product shown <em>with intention</em> sells. A destination shown in its beauty and character draws visitors.
+            This is what commercial content does when it is made right — it goes to work <strong>the moment
+            it is delivered,</strong> and <strong>keeps working indefinitely.</strong>
+          </p>
+        </div>
+        <div class="about-photo">
+          <img src="Pics/IMG_4632.JPG" alt="Fine dining - editorial">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery-section">
+    <div class="container">
+      <div class="gallery-label-row">
+        <p class="label">Selected Work</p>
+        <p class="label" style="color: var(--rule);">Photography &amp; Video</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item g1 portrait">
+          <img src="Pics/IMG_8324.JPG" alt="La Gaviota - Mediterranean exterior">
+        </div>
+        <div class="gallery-item g2">
+          <video autoplay muted loop playsinline controls>
+            <source src="Pics/22DB8445-3CC7-4AEC-A1B7-E675F7575E00.mov" type="video/mp4">
+            <source src="Pics/22DB8445-3CC7-4AEC-A1B7-E675F7575E00.mov" type="video/quicktime">
+          </video>
+        </div>
+        <div class="gallery-item g3 portrait">
+          <img src="Pics/IMG_8470.JPG" alt="Espresso - editorial beverage">
+        </div>
+        <div class="gallery-item g4">
+          <img src="Pics/IMG_8492.JPG" alt="Matcha - editorial beverage">
+        </div>
+        <div class="gallery-item g5">
+          <img src="Pics/IMG_4641.jpg" alt="Fine dining - silver serving dish">
+        </div>
+        <div class="gallery-item g6">
+          <img src="Pics/IMG_8322.JPG" alt="La Gaviota - coastal bar">
+        </div>
+        <div class="gallery-item g7">
+          <video autoplay muted loop playsinline controls>
+            <source src="Pics/A981726D-DBE9-4A49-B234-298AB4219B62.mov" type="video/mp4">
+            <source src="Pics/A981726D-DBE9-4A49-B234-298AB4219B62.mov" type="video/quicktime">
+          </video>
+        </div>
+        <div class="gallery-item g8">
+          <img src="Pics/IMG_8678.JPG" alt="Alborada - street scene">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUTCOMES -->
+  <section class="outcomes">
+    <div class="container">
+      <div class="outcomes-header">
+        <h2 class="outcomes-heading">
+          What the content<br>
+          <em>is built to do.</em>
+        </h2>
+        <p class="outcomes-sub">
+          Every deliverable is designed with a specific commercial outcome in mind.
+          Not content for content's sake.
+        </p>
+      </div>
+      <div class="outcomes-grid">
+        <div class="outcome-card">
+          <div class="outcome-num">01</div>
+          <h3 class="outcome-title">Photography</h3>
+          <p class="outcome-desc">
+            <em>Editorial-quality</em> stills built for the platforms that <strong>drive your revenue</strong> — not just the ones that look impressive.
+          </p>
+          <ul class="outcome-list">
+            <li>Website &amp; booking page assets</li>
+            <li>OTA platforms: Expedia, Booking, Agoda</li>
+            <li>Paid social &amp; display advertising</li>
+            <li>Print: menus, brochures, lobby displays</li>
+            <li>Google Maps &amp; TripAdvisor listings</li>
+            <li>Email marketing imagery</li>
+          </ul>
+        </div>
+        <div class="outcome-card">
+          <div class="outcome-num">02</div>
+          <h3 class="outcome-title">Video</h3>
+          <p class="outcome-desc">
+            <em>Short-form content</em> built for <strong>every format your campaign demands</strong> — Reels, website heroes, paid ads, and beyond.
+          </p>
+          <ul class="outcome-list">
+            <li>4K delivery, all aspect ratios</li>
+            <li>Social: Reels, Stories, TikTok</li>
+            <li>Paid ad campaigns</li>
+            <li>Website hero &amp; background video</li>
+            <li>Event &amp; launch campaign content</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOCKUPS -->
+  <section class="mockups-section">
+    <div class="container">
+      <div class="mockups-header">
+        <div class="label">Content in context</div>
+        <h2>Your brand, through the right lens.</h2>
+      </div>
+
+      <div class="mockup-full">
+        <img src="Pics/mockup_website.png" alt="Luxury restaurant website mockup">
+        <div class="mockup-full-label">Hospitality · Website</div>
+        <div class="mockup-full-desc">Editorial imagery that makes a property feel worth visiting before a guest ever arrives.</div>
+      </div>
+
+      <div class="mockups-row" style="margin-top: 24px;">
+        <div class="mockup-item">
+          <img src="Pics/mockup_ig_street.png" alt="Instagram post mockup — street scene">
+          <div class="mockup-item-label">Restaurant · Instagram</div>
+          <div class="mockup-item-desc">A single post that stops the scroll and makes people want to be there.</div>
+        </div>
+        <div class="mockup-item">
+          <img src="Pics/mockup_ig_dish.png" alt="Instagram post mockup — fine dining dish">
+          <div class="mockup-item-label">Fine Dining · Instagram</div>
+          <div class="mockup-item-desc">The dish that fills tables — captured the way it deserves to be seen.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <span class="label">Get in Touch</span>
+      <h2 class="contact-heading">
+        Let's create<br>something <em>that works.</em>
+      </h2>
+      <a href="mailto:tuyetnhiforwork@gmail.com" class="contact-email">
+        tuyetnhiforwork@gmail.com
+      </a>
+    </div>
+  </section>
+
+  <hr style="border: none; border-top: 1px solid var(--rule);">
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-name">ROSE</span>
+        <span class="footer-copy">Commercial Content Creator</span>
+        <span class="footer-copy" id="year"></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
